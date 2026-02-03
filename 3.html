@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="stylesheet" href="2.css">
+</head>
+<body>
+      <section class="header">
+    <nav>
+      <a href="2.html"><img src="images/logo.png"></a>
+      <div class="nav-links">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="">Log in</a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <!-- -------------Course-------------->
+  <section class="course">
+    <h1>Manager Dashboard</h1>
+    <section class="card employees">
+      <ul id="employee-list"></ul>
+    </section>
+
+    <section class="card" id="task-section" style="display:none;">
+      <h2 id="employee-name"></h2>
+      <div id="task-list"></div>
+    </section>
+
+    <div class="section-title">Active Projects</div>
+
+    <div class="projects">
+      <div class="project-card">
+        <div class="progress">0%</div>
+        <h3>CRM Sysyem</h3>
+          <div class="deadline">Deadline:2026-01-17</div>
+          <p><i>Emp_Aditya</i>: frontend<br><i>Emp_Vedanti</i>: backend</p>
+          <div class="status">On Track</div>
+          <div><i>Weekly Updates
+              2026-01-23 – dashboard UI designed
+              2026-01-17 – auth completed</i></div>
+      </div>
+
+      <div class="project-card">
+        <div class="progress">20%</div>
+        <h3>Supermarket Software</h3>
+        <div class="deadline">Deadline:2026-01-30</div>
+        <p><i>Emp_Happy</i>: UI <br><i>Emp_Tina</i>: Design</p>
+        <div class="status">On Track</div>
+      </div>
+    </div>
+  </main>
+  </section>
+
+<script>
+    const employees = [
+      { id: 1, name: "Aditya", tasks: [
+        { id: 1, title: "Prepare report", status: "in-Progress" },
+        { id: 2, title: "Design web-Page", status: "Pending" }
+      ]},
+      { id: 2, name: "Vedanti", tasks: [
+        { id: 3, title: "Website Page", status: "Completed" },
+        { id: 4, title: "Update employee database", status: "Pending" }
+      ]},
+      {
+        id: 3, name: "Happy", tasks: [
+            {id:5, title: "Make Document", status: "Pending"},
+            {id:6, title:"design",status:"in-progress"}
+        ]
+      },
+      { id: 4,name:"Tina",tasks:[
+        {id:7,title:"C&D",status:"in-progress"}
+      ]}
+    ];
+        const employeeList = document.getElementById('employee-list');
+    const taskSection = document.getElementById('task-section');
+    const employeeName = document.getElementById('employee-name');
+    const taskList = document.getElementById('task-list');
+
+    employees.forEach(emp => {
+      const li = document.createElement('li');
+      li.textContent = emp.name;
+      li.onclick = () => showTasks(emp);
+      employeeList.appendChild(li);
+    });
+
+    function showTasks(employee) {
+      employeeName.textContent = `Tasks for ${employee.name}`;
+      taskList.innerHTML = '';
+      employee.tasks.forEach(task => {
+        const div = document.createElement('div');
+        div.className = 'task';
+        div.innerHTML = `
+          <span>${task.title}</span>
+          <select>
+            <option ${task.status==='Pending'?'selected':''}>Pending</option>
+            <option ${task.status==='In Progress'?'selected':''}>In Progress</option>
+            <option ${task.status==='Completed'?'selected':''}>Completed</option>
+          </select>`;
+        taskList.appendChild(div);
+      });
+      taskSection.style.display = 'block';
+    }
+  </script>
+
+
+    <!-- --------------About Us------------- -->
+
+   <section class="about">
+      <h1>About Us for Manage </h1>
+      <a href="" class="about-us">CONTACT US</a>
+   </section>
+   
+</body>
+</html>
